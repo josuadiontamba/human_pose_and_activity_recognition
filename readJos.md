@@ -1,0 +1,2 @@
+- problem: `importerror: libopenblas.so.0: cannot open shared object file: no such file or directory` => [solution](https://www.programmersought.com/article/81961555087/)
+- problem: `OSError: libnccl.so.2: cannot open shared object file: No such file or directory` => [solution](https://developer.nvidia.com/nccl/nccl-download), note: `be carefull about your docker, mine using ubuntu 18.04`
