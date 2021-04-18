@@ -8,12 +8,7 @@ import math
 # im_fname = "data/lana_1.png"
 # im_fname = "data/satria_1.png"
 # im_fname = "data/persons_1.jpg"
-
-
-# im_fname = "/home/jos/tf_lab/bodypix/raw/squat/jos80.jpg"
-
-im_fname = "/home/jos/tf_lab/bodypix/raw/stand/jos11.jpg"
-# im_fname = "/home/jos/tf_lab/Ultralight-SimplePose/test.jpg"
+im_fname = '/home/jos/tf_lab/Ultralight-SimplePose/generator_dataset/res_image/sit/jos1.jpg'
 model_json = 'model/Ultralight-Nano-SimplePose.json'
 model_params = "model/Ultralight-Nano-SimplePose.params"
 
