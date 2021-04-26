@@ -8,7 +8,8 @@ import math
 # im_fname = "data/lana_1.png"
 # im_fname = "data/satria_1.png"
 # im_fname = "data/persons_1.jpg"
-im_fname = '/home/jos/tf_lab/Ultralight-SimplePose/generator_dataset/res_image/sit/jos1.jpg'
+# im_fname = '/home/jos/tf_lab/Ultralight-SimplePose/generator_dataset/res_image/sit/jos1.jpg'
+im_fname = '/home/jos/tf_lab/Ultralight-SimplePose/generator_dataset/2_res_image/stand/jos2.jpg'
 model_json = 'model/Ultralight-Nano-SimplePose.json'
 model_params = "model/Ultralight-Nano-SimplePose.params"
 
@@ -40,16 +41,22 @@ print("\n\n\t\t==========================================\n\n")
 i = 0
 central = []
 for x in scores[0]:
-    
     if x > 0.5:
         coord = pred_coords[i]
         print("scores: \t",x.asscalar())
         print("\t\tbounding_box:\t", bounding_boxs[0][i])
+        print("y high: ",bounding_boxs[0][i][1].asscalar())
+        print("y low : ",bounding_boxs[0][i][3].asscalar())
+        print("panjang vertical: ",bounding_boxs[0][i][3].asscalar()-bounding_boxs[0][i][1].asscalar())
         central_x = ((bounding_boxs[0][i][0] + bounding_boxs[0][i][2]) / 2).asscalar()
         central_y = ((bounding_boxs[0][i][1] + bounding_boxs[0][i][3]) / 2).asscalar()
         print("\t\tCENTRAL x: ", central_x, "\n\t\tCENTRAL y: ", central_y)
-        cent_5_x = (coord[5][1].asscalar() - central_x) ** 2
-        cent_5_y = (coord[5][0].asscalar() - central_x) ** 2
+        diag_x = (bounding_boxs[0][i][0].asscalar() - central_x) ** 2
+        diag_y = (bounding_boxs[0][i][1].asscalar() - central_y) ** 2
+        diag = math.sqrt(diag_x + diag_y)
+        print("Panjang DIAGONAL : ",diag)
+        cent_5_x = (coord[5][0].asscalar() - central_x) ** 2
+        cent_5_y = (coord[5][1].asscalar() - central_y) ** 2
         cent_5 = math.sqrt(cent_5_x + cent_5_y)
         print("\t\tbahu ke centroid: ",cent_5)
     elif x == -1:
@@ -57,11 +64,11 @@ for x in scores[0]:
     i += 1
 
 
-for coord in pred_coords:
-    i = 0
-    for x in coord:
-        print(i, ": ", coord[i, 1].asscalar())
-        i += 1
+# for coord in pred_coords:
+#     i = 0
+#     for x in coord:
+#         print(i, ": ", coord[i, 1].asscalar())
+#         i += 1
 
 
 # posisi = []

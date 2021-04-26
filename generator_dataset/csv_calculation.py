@@ -56,7 +56,7 @@ for i in range(0, 57):
             # variabel for stand 2
             # variabel for sit 3
             distance_from_central.append(3)
-            with open('generator_dataset/dataset_file.csv', mode='a') as squat:
+            with open('generator_dataset/dataset_file4.csv', mode='a') as squat:
                 distance_writer = csv.writer(
                     squat, delimiter=',', quoting=csv.QUOTE_MINIMAL)
                 distance_writer.writerow(distance_from_central)

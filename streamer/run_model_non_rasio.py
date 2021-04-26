@@ -46,16 +46,23 @@ def keypoint_detection(img, detector, pose_net, mymodel, ctx):
                 pred.append(distance_from_central[x])
         # print('pred: ',pred)
         result = mymodel.predict([pred])
+        print("result: ",result)
+        pose = "?"
         if result[0] == 1.0: 
-            print("squat")
+            # print("squat")
+            pose = "squat"
         elif result[0] == 2.0: 
-            print("stand")
+            # print("stand")
+            pose = "stand"
         elif result[0] == 3.0: 
-            print("sit")
+            # print("sit")
+            pose = "sit"
         # print(result)
 
         scale = 1.0 * img.shape[0] / scaled_img.shape[0]
-        img = cv_plot_keypoints(img.asnumpy(), pred_coords, confidence, class_IDs, bounding_boxs, scores, box_thresh=0.5, keypoint_thresh=0.3, scale=scale)
+        # print("class ids type: ",type(class_IDs))
+        # print("score type: ",type(scores))
+        img = cv_plot_keypoints(img.asnumpy(), pred_coords, confidence, class_IDs, bounding_boxs, scores, pose ,box_thresh=0.5, keypoint_thresh=0.3, scale=scale)
     return img
 
 
@@ -76,7 +83,7 @@ if __name__ == '__main__':
     cap = cv2.VideoCapture(url)    
 
     # pose_path = "/home/jos/tf_lab/Ultralight-SimplePose/trainer/finalized_model.sav"
-    pose_path = '/home/jos/tf_lab/Ultralight-SimplePose/trainer/AB_model.sav'
+    pose_path = '/home/jos/tf_lab/Ultralight-SimplePose/trainer/AB_model_2.sav'
     mymodel = pickle.load(open(pose_path, 'rb'))
 
 

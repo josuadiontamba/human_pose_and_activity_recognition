@@ -125,6 +125,6 @@ def sit(savefilename):
 
 if __name__ == '__main__':
     savefile = 'generator_dataset/dataset_file3.csv'
-    # stand(savefile)
-    # squat(savefile)
+    stand(savefile)
+    squat(savefile)
     sit(savefile)
